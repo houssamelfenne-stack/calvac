@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr-FR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b63">
+  <meta name="description" content="CALVAC — calcul indicatif des rendez-vous du calendrier national de vaccination marocain.">
+  <title>CALVAC — Calendrier vaccinal</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CALVAC">
+      <img class="brand-logo" src="calvac_logo.png" alt="">
+      <span>CALVAC</span>
+    </a>
+    <button class="language-button" id="language-button" type="button">العربية</button>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro">
+      <span class="eyebrow" data-i18n="eyebrow">Calendrier national · Maroc</span>
+      <h1 data-i18n="title">Les rendez-vous vaccinaux, en toute clarté.</h1>
+      <p data-i18n="subtitle">Calculez les dates indicatives de vaccination à partir de la date de naissance de votre enfant.</p>
+      <div class="privacy-note"><span aria-hidden="true">✓</span> <span data-i18n="privacy">Vos données restent sur cet appareil.</span></div>
+    </section>
+
+    <section class="app-card" aria-labelledby="form-title">
+      <div class="card-heading">
+        <div>
+          <span class="step-label" data-i18n="step">VOTRE SIMULATION</span>
+          <h2 id="form-title" data-i18n="formTitle">Informations de l’enfant</h2>
+        </div>
+        <span class="calendar-icon" aria-hidden="true">▦</span>
+      </div>
+
+      <form id="schedule-form">
+        <label class="field-label" for="birth-date" data-i18n="birthLabel">Date de naissance</label>
+        <div class="date-field">
+          <input id="birth-date" name="birthDate" type="text" inputmode="numeric" placeholder="jj/mm/aaaa" autocomplete="off" required>
+          <button class="calendar-button" type="button" data-picker="birth-date-picker" data-i18n-aria="chooseDate" aria-label="Choisir une date">▦</button>
+          <input id="birth-date-picker" class="native-date-picker" type="date" tabindex="-1" aria-hidden="true">
+        </div>
+
+        <label class="switch-row" for="catch-up">
+          <span class="switch-copy">
+            <strong data-i18n="catchupTitle">L’enfant a des doses en retard</strong>
+            <small data-i18n="catchupDescription">Afficher un plan indicatif de rattrapage</small>
+          </span>
+          <input id="catch-up" type="checkbox">
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+
+        <div id="catch-up-fields" class="catch-up-fields" hidden>
+          <p class="helper-text" data-i18n="catchupHelp">Choisissez le dernier groupe de routine reçu. Les groupes précédents sont considérés comme complets ; indiquez les doses reçues dans ce dernier groupe.</p>
+          <label class="field-label" for="last-group" data-i18n="lastGroupLabel">Dernier groupe reçu</label>
+          <select id="last-group"></select>
+          <div id="dose-options" class="dose-options"></div>
+          <div id="last-group-date-field" hidden>
+            <label class="field-label" for="last-group-date" data-i18n="lastGroupDateLabel">Date du dernier groupe reçu</label>
+            <div class="date-field">
+              <input id="last-group-date" type="text" inputmode="numeric" placeholder="jj/mm/aaaa" autocomplete="off">
+              <button class="calendar-button" type="button" data-picker="last-group-date-picker" data-i18n-aria="chooseDate" aria-label="Choisir une date">▦</button>
+              <input id="last-group-date-picker" class="native-date-picker" type="date" tabindex="-1" aria-hidden="true">
+            </div>
+          </div>
+          <label class="field-label" for="first-visit-date" data-i18n="firstVisitLabel">Date de la première visite de rattrapage</label>
+          <div class="date-field">
+            <input id="first-visit-date" type="text" inputmode="numeric" placeholder="jj/mm/aaaa" autocomplete="off">
+            <button class="calendar-button" type="button" data-picker="first-visit-date-picker" data-i18n-aria="chooseDate" aria-label="Choisir une date">▦</button>
+            <input id="first-visit-date-picker" class="native-date-picker" type="date" tabindex="-1" aria-hidden="true">
+          </div>
+        </div>
+
+        <button class="primary-button" type="submit" data-i18n="calculate">Calculer les rendez-vous</button>
+      </form>
+
+      <div id="results" class="results" aria-live="polite"></div>
+    </section>
+
+    <section class="reference">
+      <div class="reference-icon" aria-hidden="true">i</div>
+      <div>
+        <h2 data-i18n="referenceTitle">Référence et informations importantes</h2>
+        <p data-i18n="referenceBody">Calendrier National de Vaccination 2025, Ministère de la Santé et de la Protection Sociale. Les dates sont calculées à partir des âges indiqués dans ce document.</p>
+        <a href="https://www.sante.gov.ma/Documents/2026/09/Calendrier%20National%20de%20Vaccination%202025.pdf" target="_blank" rel="noopener noreferrer" data-i18n="sourceLink">Consulter le document officiel ↗</a>
+        <p class="disclaimer" data-i18n="disclaimerRoutine">Ce calendrier indicatif ne remplace pas le carnet de santé ni l’avis d’un professionnel. Pour une dose manquée, contactez un centre de santé.</p>
+      </div>
+    </section>
+
+    <footer>Copyright : GST/DSSPPPS © El Fenne Houssam</footer>
+  </main>
+</body>
+</html>
